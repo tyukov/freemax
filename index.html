@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Example</title>
+  <style>
+    body {
+      margin: 0;
+      color: #333;
+      font-family: sans-serif;
+    }
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .header-nav {
+      background-color: #fff;
+    }
+    .header-list {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    .header-list__item {
+      display: inline-block;
+      padding: 26.5px .8125rem;
+      border-bottom: 1px solid #eee;
+    }
+    .header-list__link {
+      display: inline-block;
+      padding: 5px 3px 6px;
+      text-decoration: none;
+      color: #333;
+    }
+    .header-list__link:hover {
+      color: #777;
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      padding: 1.781125rem .8125rem;
+      border-bottom: 1px solid #eee;
+    }
+    .logo-link {
+      line-height: inherit;
+      display: inline-block;
+      border: none;
+      font-size: 0;
+    }
+    .header-logo__link,
+    .footer-logo__link {
+      padding: 5px 3px 6px;
+    }
+    .logo {
+      width: 80px;
+      height: 14px;
+    }
+    svg {
+      display: inline-block;
+      overflow: hidden;
+    }
+    .header-list__item_shop .header-list__link::before {
+      content: '';
+      display: inline-block;
+      background-image: url(https://a.lmcdn.ru/st/d/kz/19.02.06_d2/i/global/carts.svg);
+      background-position: -16px 0;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+    .header-list__item_shop .header-list__link:hover::before {
+      background-position: 0 0;
+    }
+    .hero__wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 12.222222222% 11.203703703% 35.648148148% 1.851851851% 29.259259259% 9.814814814%;
+      grid-template-rows: 79px 222px 283px 68px 45px;
+      padding-top: 5rem;
+    }
+    .hero__heading {
+      grid-column: 3/ span 4;
+      font-size: 72px;
+      margin: -26px 0 0 2.3125rem;
+    }
+    .hero__description {
+      grid-column: 5/ span 2;
+      grid-row: 2
+    }
+    .hero__description-copy {
+      line-height: 1.5;
+    }
+    .hero__description-copy_pos_first {
+      margin-top: .5rem;
+    }
+    .hero__grid-image_pos_first {
+      max-width: 253px;
+      max-height: 253px;
+      grid-column: 1/ span 2;
+      grid-row: 1
+    }
+    .hero__grid-image {
+    font-size: 0;
+    }
+    .hero__grid-image_pos_main {
+      max-width: 506px;
+      max-height: 506px;
+      grid-column: 2/span 2;
+      grid-row: 2/span 2;
+    }
+    .hero__grid-image__img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
+    .hero__grid-image_pos_last {
+      grid-column: 5
+    }
+    .hero__grid-img-des {
+      display: block;
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(51, 51, 51, 0.66);
+      margin: 1rem 0 0;
+    }
+    a {
+      color: #6094e1;
+    }
+    .hero__grid-image_pos_first,
+    .hero__grid-image_pos_last {
+      opacity: .66;
+      z-index: 2;
+    }
+    .hero__grid-image_pos_main  {
+      z-index: 3;
+    }
+    
+    .hero__grid-image_pos_first .hero__grid-image__img,
+    .hero__grid-image_pos_last .hero__grid-image__img {
+      filter: grayscale(100%);
+    }
+    .footer-nav {
+      position: relative;
+    }
+    .footer {
+      padding-top: 6rem;
+    }
+    .footer-nav::before {
+      content: '';
+      width: 600px;
+      height: 1px;
+      background-color: #eee;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -300px;
+    }
+    .footer-list,
+    .footer-list-social {
+      flex: 1;
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    .footer-list-social  {
+      justify-content: flex-end;
+    }
+    .footer-list__item {
+      display: inline-block;
+      padding: 26.5px .8125rem;
+    }
+    .footer-list__link {
+      display: inline-block;
+      padding: 5px 3px 6px;
+      text-decoration: none;
+      color: #333;
+      font-size: .9375rem;
+    }
+    .footer-list__link:hover {
+      color: #777;
+    }
+    .footer-list-social__item {
+      display: inline-block;
+      font-size: 0;
+      line-height: inherit;
+    }
+    .footer-list-social__link {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      margin-left: 0;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .icon-fb {
+      background: url(https://a.lmcdn.ru/st/d/kz/19.02.14_4/i/global/ico-fb-gray.svg);
+    }
+    .icon-fb:hover {
+      background: url(https://a.lmcdn.ru/st/d/kz/19.02.14_4/i/global/ico-fb-blue.svg);
+    }
+    .icon-vk { 
+      background: url(https://a.lmcdn.ru/st/d/kz/19.02.14_4/i/global/ico-vk-gray.svg);
+    }
+    .icon-vk:hover { 
+      background: url(https://a.lmcdn.ru/st/d/kz/19.02.14_4/i/global/ico-vk-blue.svg);
+    }
+    .icon-twitter {
+      background: url(https://a.lmcdn.ru/st/d/kz/19.02.14_4/i/global/ico-tw-gray.svg);
+    }
+    .icon-twitter:hover {
+      background: url(https://a.lmcdn.ru/st/d/kz/19.02.14_4/i/global/ico-tw-blue.svg);
+    }
+  </style>
+</head>
+<body>
+<header class="header" role="banner">
+  <nav class="header-nav">
+   <div class="wrap">
+    <div class="header-logo">
+      <a class="logo-link header-logo__link" href="#">
+<svg class="logo header-logo__logo" viewBox="0 0 40.4 7.1" xml:space="preserve">
+<g>
+	<path d="M4.5,0v0.4H1.2v2.5h2.4v0.4H1.2v3.6H0V0H4.5z"/>
+	<path d="M5.2,1.6h1.1v1c0.1-0.2,0.2-0.3,0.3-0.4S6.8,1.9,7,1.8s0.3-0.2,0.4-0.2s0.3-0.1,0.4-0.1s0.2,0,0.3,0.1s0.2,0.1,0.3,0.1
+		s0.1,0.1,0.2,0.2s0,0.1,0,0.2c0,0.2-0.1,0.3-0.2,0.4S8.2,2.6,8,2.6c-0.1,0-0.2,0-0.3,0s-0.1,0-0.2-0.1s-0.1,0-0.1-0.1s-0.1,0-0.2,0
+		C7,2.4,6.8,2.5,6.7,2.6S6.4,3,6.3,3.2v3.7H5.2V1.6z"/>
+	<path d="M11.6,7.1c-0.4,0-0.7-0.1-1-0.2S10,6.5,9.7,6.3S9.3,5.8,9.2,5.5S9,4.8,9,4.5C9,4,9,3.6,9.2,3.3s0.3-0.7,0.5-0.9
+		s0.5-0.5,0.8-0.6s0.7-0.2,1.1-0.2c0.4,0,0.7,0.1,1,0.2s0.5,0.3,0.8,0.5s0.4,0.4,0.5,0.7S14,3.4,14,3.7h-4c0,0.4,0,0.7,0.1,1
+		s0.2,0.6,0.4,0.8s0.4,0.4,0.6,0.5s0.5,0.2,0.8,0.2c0.2,0,0.5,0,0.7-0.1s0.4-0.2,0.6-0.3s0.3-0.3,0.4-0.4s0.2-0.3,0.3-0.5L14.2,5
+		c-0.1,0.3-0.2,0.5-0.4,0.8s-0.4,0.5-0.6,0.6s-0.5,0.3-0.7,0.4S11.9,7.1,11.6,7.1z M12.6,3.3c0-0.2,0-0.4-0.1-0.6s-0.2-0.3-0.3-0.5
+		S12,2.1,11.8,2s-0.3-0.1-0.5-0.1S11,1.9,10.8,2c-0.2,0.1-0.3,0.2-0.4,0.3s-0.2,0.3-0.3,0.5S10,3.1,10,3.3H12.6z"/>
+	<path d="M17.5,7.1c-0.4,0-0.7-0.1-1-0.2s-0.6-0.3-0.8-0.6s-0.4-0.5-0.6-0.8s-0.2-0.7-0.2-1c0-0.4,0.1-0.8,0.2-1.2s0.3-0.7,0.5-0.9
+		s0.5-0.5,0.8-0.6s0.7-0.2,1.1-0.2s0.7,0.1,1,0.2S19,2,19.2,2.2s0.4,0.4,0.5,0.7s0.2,0.6,0.2,0.9h-4c0,0.4,0,0.7,0.1,1
+		s0.2,0.6,0.4,0.8S16.8,5.9,17,6s0.5,0.2,0.8,0.2c0.2,0,0.5,0,0.7-0.1S18.8,6,19,5.8s0.3-0.3,0.4-0.4s0.2-0.3,0.3-0.5L20,5.1
+		c-0.1,0.3-0.2,0.5-0.4,0.8S19.2,6.4,19,6.5s-0.5,0.3-0.7,0.4S17.8,7.1,17.5,7.1z M18.5,3.3c0-0.2,0-0.4-0.1-0.6s-0.2-0.3-0.3-0.5
+		S17.9,2.1,17.7,2s-0.3-0.1-0.5-0.1s-0.3,0-0.5,0.1c-0.2,0.1-0.3,0.2-0.4,0.3S16.1,2.6,16,2.7s-0.1,0.4-0.1,0.6
+		C15.9,3.3,18.5,3.3,18.5,3.3z"/>
+	<path d="M21,1.6h1.1v1c0.1-0.1,0.3-0.3,0.5-0.4s0.3-0.3,0.5-0.4s0.4-0.2,0.5-0.2s0.4-0.1,0.5-0.1c0.2,0,0.3,0,0.5,0.1
+		s0.3,0.1,0.5,0.2s0.3,0.2,0.4,0.4s0.2,0.3,0.2,0.5c0.1-0.2,0.2-0.3,0.4-0.4s0.3-0.3,0.5-0.4s0.4-0.2,0.6-0.2s0.4-0.1,0.6-0.1
+		s0.4,0,0.6,0.1s0.3,0.2,0.5,0.4s0.2,0.3,0.3,0.5s0.1,0.4,0.1,0.7v3.8h-1.1V3.3c0-0.2,0-0.3-0.1-0.4S28,2.7,27.9,2.5
+		s-0.2-0.2-0.3-0.2s-0.2-0.1-0.4-0.1c-0.1,0-0.3,0-0.4,0.1s-0.3,0.1-0.4,0.2S26,2.6,25.9,2.7S25.7,2.9,25.6,3v4h-1.1V3.3
+		c0-0.2,0-0.3-0.1-0.4s-0.1-0.2-0.2-0.4S24.1,2.3,24,2.3s-0.2-0.1-0.4-0.1c-0.1,0-0.3,0-0.4,0.1s-0.3,0.1-0.4,0.2s-0.3,0.2-0.4,0.2
+		S22.2,2.9,22.1,3v4H21V1.6z"/>
+	<path d="M34.3,6.9h-1.1V6.2c-0.1,0.1-0.2,0.2-0.4,0.3s-0.3,0.2-0.4,0.3S32.2,6.9,32,7s-0.4,0.1-0.6,0.1S31,7.1,30.8,7
+		s-0.3-0.2-0.4-0.3s-0.2-0.3-0.3-0.4S30,6,30,5.8s0-0.4,0.1-0.6s0.2-0.3,0.4-0.5s0.3-0.3,0.6-0.4s0.4-0.2,0.7-0.3s0.5-0.2,0.7-0.2
+		s0.5-0.1,0.7-0.2V3.1c0-0.2,0-0.4-0.1-0.6s0-0.3-0.1-0.4s-0.2-0.2-0.3-0.2s-0.3-0.1-0.4-0.1c-0.2,0-0.3,0-0.4,0.1S31.6,2,31.5,2.1
+		s-0.1,0.2-0.1,0.3s0,0.2,0,0.3s0,0.2,0,0.3s0,0.2-0.1,0.2s-0.1,0.1-0.2,0.2s-0.2,0.1-0.3,0.1c-0.2,0-0.3-0.1-0.4-0.2
+		S30.2,3,30.2,2.9c0-0.2,0.1-0.3,0.2-0.5s0.3-0.3,0.5-0.4s0.4-0.2,0.7-0.3s0.5-0.1,0.8-0.1c0.4,0,0.6,0,0.9,0.1s0.4,0.2,0.6,0.3
+		s0.3,0.3,0.3,0.4s0.1,0.4,0.1,0.6V6.9z M33.3,3.8C33,3.9,32.8,4,32.5,4.1S32,4.3,31.8,4.5S31.4,4.8,31.3,5s-0.2,0.3-0.2,0.5
+		c0,0.1,0,0.3,0.1,0.4s0.1,0.2,0.2,0.3s0.2,0.2,0.3,0.2s0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.3,0s0.2-0.1,0.3-0.1S32.9,6.1,33,6
+		s0.2-0.1,0.3-0.2V3.8z"/>
+	<path d="M35.5,6.9h-0.6l2.2-2.7l-1.9-2.6h1.2l1.3,1.8l1.5-1.8h0.6L38,3.8L40.3,7H39l-1.7-2.4L35.5,6.9z"/>
+</g>
+</svg>
+      </a>
+    </div>
+    <ul class="header-list">
+      <li class="header-list__item">
+        <a class="header-list__link" href="#news">Новости</a>
+      </li>
+      <li class="header-list__item">
+        <a class="header-list__link" href="#">Обо мне</a>
+      </li>
+      <li class="header-list__item header-list__item_shop">
+        <a class="header-list__link" href="#">Магазин</a>
+      </li>
+    </ul>
+    </div>
+  </nav>
+</header>
+<main class="main" role="main">
+  <section class="hero">
+    <div class="hero__wrap">
+      <div class="hero__grid">
+        <h1 class="hero__heading">Максим Русаков</h1>
+        <div class="hero__description">
+          <p class="hero__description-copy hero__description-copy_pos_first">Фотограф, дизайнер, режиссер. Обожаю делать видео, которые вдохновляют и мотивируют людей! Также, я создаю видеокурсы о работе в графических редакторах, делаю пресеты для обработки фотографий и LUT-файлы для цветокоррекции видео.</p>
+          <p class="hero__description-copy">Если Вы хотите сотрудничать или работать со мной, пишите на Email: <a href="mailto:contact@freemax.red">contact@freemax.red</a></p>
+        </div>
+        <div class="hero__grid-image hero__grid-image_pos_first">
+          <img class="hero__grid-image__img" src="https://instagram.fala4-1.fna.fbcdn.net/vp/b868256fadd303f36290e8c2021d983a/5D01786C/t51.2885-15/e35/c0.135.1080.1080/s320x320/45690346_270036967006541_7371311967430404125_n.jpg?_nc_ht=instagram.fala4-1.fna.fbcdn.net" alt="">
+        </div>
+        <div class="hero__grid-image hero__grid-image_pos_main">
+          <img class="hero__grid-image__img" src="https://instagram.fala4-1.fna.fbcdn.net/vp/f03fd4e04c352c57787ebc68a1705b2e/5CF7BB1B/t51.2885-15/sh0.08/e35/c0.135.1080.1080/s640x640/40583252_664981630553444_2771548043990794240_n.jpg?_nc_ht=instagram.fala4-1.fna.fbcdn.net" alt="">
+          <span class="hero__grid-img-des">Люблю фотографировать, снимать видео, смотреть хорошее кино, веселиться и веселить других.</span>
+        </div>
+        <div class="hero__grid-image hero__grid-image_pos_last">
+          <img class="hero__grid-image__img" src="https://instagram.fala4-1.fna.fbcdn.net/vp/5016cd5c8ac20080653b2472d54412b9/5CE364ED/t51.2885-15/e35/35396470_149820975890480_7520956226033680384_n.jpg?_nc_ht=instagram.fala4-1.fna.fbcdn.net" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer-nav">
+    <div class="wrap">
+      <ul class="footer-list">
+        <li class="footer-list__item">
+          <a class="footer-list__link" href="#">Сотрудничество</a>
+        </li>
+        <li class="footer-list__item">
+          <a class="footer-list__link" href="#">Помощь</a>
+        </li>
+        <li class="footer-list__item">
+          <a class="footer-list__link" href="#">Отзывы</a>
+        </li>
+      </ul>
+      <a class="logo-link footer-logo__link" href="#">
+        <svg class="logo" viewBox="0 0 40.4 7.1" xml:space="preserve">
+          <g>
+            <path d="M4.5,0v0.4H1.2v2.5h2.4v0.4H1.2v3.6H0V0H4.5z"/>
+            <path d="M5.2,1.6h1.1v1c0.1-0.2,0.2-0.3,0.3-0.4S6.8,1.9,7,1.8s0.3-0.2,0.4-0.2s0.3-0.1,0.4-0.1s0.2,0,0.3,0.1s0.2,0.1,0.3,0.1
+                s0.1,0.1,0.2,0.2s0,0.1,0,0.2c0,0.2-0.1,0.3-0.2,0.4S8.2,2.6,8,2.6c-0.1,0-0.2,0-0.3,0s-0.1,0-0.2-0.1s-0.1,0-0.1-0.1s-0.1,0-0.2,0
+                C7,2.4,6.8,2.5,6.7,2.6S6.4,3,6.3,3.2v3.7H5.2V1.6z"/>
+            <path d="M11.6,7.1c-0.4,0-0.7-0.1-1-0.2S10,6.5,9.7,6.3S9.3,5.8,9.2,5.5S9,4.8,9,4.5C9,4,9,3.6,9.2,3.3s0.3-0.7,0.5-0.9
+                s0.5-0.5,0.8-0.6s0.7-0.2,1.1-0.2c0.4,0,0.7,0.1,1,0.2s0.5,0.3,0.8,0.5s0.4,0.4,0.5,0.7S14,3.4,14,3.7h-4c0,0.4,0,0.7,0.1,1
+                s0.2,0.6,0.4,0.8s0.4,0.4,0.6,0.5s0.5,0.2,0.8,0.2c0.2,0,0.5,0,0.7-0.1s0.4-0.2,0.6-0.3s0.3-0.3,0.4-0.4s0.2-0.3,0.3-0.5L14.2,5
+                c-0.1,0.3-0.2,0.5-0.4,0.8s-0.4,0.5-0.6,0.6s-0.5,0.3-0.7,0.4S11.9,7.1,11.6,7.1z M12.6,3.3c0-0.2,0-0.4-0.1-0.6s-0.2-0.3-0.3-0.5
+                S12,2.1,11.8,2s-0.3-0.1-0.5-0.1S11,1.9,10.8,2c-0.2,0.1-0.3,0.2-0.4,0.3s-0.2,0.3-0.3,0.5S10,3.1,10,3.3H12.6z"/>
+            <path d="M17.5,7.1c-0.4,0-0.7-0.1-1-0.2s-0.6-0.3-0.8-0.6s-0.4-0.5-0.6-0.8s-0.2-0.7-0.2-1c0-0.4,0.1-0.8,0.2-1.2s0.3-0.7,0.5-0.9
+                s0.5-0.5,0.8-0.6s0.7-0.2,1.1-0.2s0.7,0.1,1,0.2S19,2,19.2,2.2s0.4,0.4,0.5,0.7s0.2,0.6,0.2,0.9h-4c0,0.4,0,0.7,0.1,1
+                s0.2,0.6,0.4,0.8S16.8,5.9,17,6s0.5,0.2,0.8,0.2c0.2,0,0.5,0,0.7-0.1S18.8,6,19,5.8s0.3-0.3,0.4-0.4s0.2-0.3,0.3-0.5L20,5.1
+                c-0.1,0.3-0.2,0.5-0.4,0.8S19.2,6.4,19,6.5s-0.5,0.3-0.7,0.4S17.8,7.1,17.5,7.1z M18.5,3.3c0-0.2,0-0.4-0.1-0.6s-0.2-0.3-0.3-0.5
+                S17.9,2.1,17.7,2s-0.3-0.1-0.5-0.1s-0.3,0-0.5,0.1c-0.2,0.1-0.3,0.2-0.4,0.3S16.1,2.6,16,2.7s-0.1,0.4-0.1,0.6
+                C15.9,3.3,18.5,3.3,18.5,3.3z"/>
+            <path d="M21,1.6h1.1v1c0.1-0.1,0.3-0.3,0.5-0.4s0.3-0.3,0.5-0.4s0.4-0.2,0.5-0.2s0.4-0.1,0.5-0.1c0.2,0,0.3,0,0.5,0.1
+                s0.3,0.1,0.5,0.2s0.3,0.2,0.4,0.4s0.2,0.3,0.2,0.5c0.1-0.2,0.2-0.3,0.4-0.4s0.3-0.3,0.5-0.4s0.4-0.2,0.6-0.2s0.4-0.1,0.6-0.1
+                s0.4,0,0.6,0.1s0.3,0.2,0.5,0.4s0.2,0.3,0.3,0.5s0.1,0.4,0.1,0.7v3.8h-1.1V3.3c0-0.2,0-0.3-0.1-0.4S28,2.7,27.9,2.5
+                s-0.2-0.2-0.3-0.2s-0.2-0.1-0.4-0.1c-0.1,0-0.3,0-0.4,0.1s-0.3,0.1-0.4,0.2S26,2.6,25.9,2.7S25.7,2.9,25.6,3v4h-1.1V3.3
+                c0-0.2,0-0.3-0.1-0.4s-0.1-0.2-0.2-0.4S24.1,2.3,24,2.3s-0.2-0.1-0.4-0.1c-0.1,0-0.3,0-0.4,0.1s-0.3,0.1-0.4,0.2s-0.3,0.2-0.4,0.2
+                S22.2,2.9,22.1,3v4H21V1.6z"/>
+            <path d="M34.3,6.9h-1.1V6.2c-0.1,0.1-0.2,0.2-0.4,0.3s-0.3,0.2-0.4,0.3S32.2,6.9,32,7s-0.4,0.1-0.6,0.1S31,7.1,30.8,7
+                s-0.3-0.2-0.4-0.3s-0.2-0.3-0.3-0.4S30,6,30,5.8s0-0.4,0.1-0.6s0.2-0.3,0.4-0.5s0.3-0.3,0.6-0.4s0.4-0.2,0.7-0.3s0.5-0.2,0.7-0.2
+                s0.5-0.1,0.7-0.2V3.1c0-0.2,0-0.4-0.1-0.6s0-0.3-0.1-0.4s-0.2-0.2-0.3-0.2s-0.3-0.1-0.4-0.1c-0.2,0-0.3,0-0.4,0.1S31.6,2,31.5,2.1
+                s-0.1,0.2-0.1,0.3s0,0.2,0,0.3s0,0.2,0,0.3s0,0.2-0.1,0.2s-0.1,0.1-0.2,0.2s-0.2,0.1-0.3,0.1c-0.2,0-0.3-0.1-0.4-0.2
+                S30.2,3,30.2,2.9c0-0.2,0.1-0.3,0.2-0.5s0.3-0.3,0.5-0.4s0.4-0.2,0.7-0.3s0.5-0.1,0.8-0.1c0.4,0,0.6,0,0.9,0.1s0.4,0.2,0.6,0.3
+                s0.3,0.3,0.3,0.4s0.1,0.4,0.1,0.6V6.9z M33.3,3.8C33,3.9,32.8,4,32.5,4.1S32,4.3,31.8,4.5S31.4,4.8,31.3,5s-0.2,0.3-0.2,0.5
+                c0,0.1,0,0.3,0.1,0.4s0.1,0.2,0.2,0.3s0.2,0.2,0.3,0.2s0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.3,0s0.2-0.1,0.3-0.1S32.9,6.1,33,6
+                s0.2-0.1,0.3-0.2V3.8z"/>
+            <path d="M35.5,6.9h-0.6l2.2-2.7l-1.9-2.6h1.2l1.3,1.8l1.5-1.8h0.6L38,3.8L40.3,7H39l-1.7-2.4L35.5,6.9z"/>
+        </g>
+        </svg>
+      </a>
+      <ul class="footer-list-social">
+        <li class="footer-list-social__item">
+          <a class="footer-list-social__link icon-fb" href="#"></a>
+        </li>
+        <li class="footer-list-social__item">
+          <a class="footer-list-social__link icon-vk" href="#"></a>
+        </li>
+        <li class="footer-list-social__item">
+          <a class="footer-list-social__link icon-twitter" href="#"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
